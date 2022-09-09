@@ -154,7 +154,7 @@ export default function Footer() {
   });
 
   return (
-    <footer className={classes.footer}>
+    <footer style={{background: "black"}} className={classes.footer}>
       <Container className={classes.inner}>
         <div className={classes.logo}>
           <Image alt="Schülergenossen-Logo" src="/logo.png" width="60" height="60"  />
@@ -165,7 +165,7 @@ export default function Footer() {
         <div className={classes.groups}>{groups}</div>
       </Container>
       <Container className={classes.afterFooter}>
-        <Text color="dimmed" size="sm">
+        <Text color="dimmed" size="sm" className="font-semibold">
           © 2022 Schülergenossen Selm eSG
         </Text>
 
@@ -173,7 +173,7 @@ export default function Footer() {
           <ActionIcon component='a' href='https://www.instagram.com/schuelergenossenschaft_selm/' size="lg">
             <IconBrandInstagram size={18} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon component='a' href='' size="lg">
+          <ActionIcon component='a' href='https://github.com/jonaslng/schuelergenossen-selm' size="lg">
             <IconBrandGithub size={18} stroke={1.5} />
           </ActionIcon>
         </Group>

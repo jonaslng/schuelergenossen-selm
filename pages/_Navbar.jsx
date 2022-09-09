@@ -1,13 +1,22 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { ShoppingCartIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Popover, Transition } from '@headlessui/react'
+import { IconMenu,IconMessage,IconShoppingCart,IconX } from '@tabler/icons'
 
-const navigation = [
-  { name: 'Start', href: '/', current: true },  
-  { name: 'Shop', href: 'shop', current: false },
-  { name: 'Potato Company', href: 'potato-company', current: false },
-  { name: 'Presse', href: 'presse', current: false },
+const solutions = [
+  {
+    name: 'Start',
+    href: '#',
+  },
+  {
+    name: 'Shop',
+    href: 'shop',
+  },
+  { name: 'Potato Company', href: 'potato' },
+  {
+    name: 'Team',
+    href: 'team',
+  },
 ]
 
 function classNames(...classes) {
@@ -16,84 +25,108 @@ function classNames(...classes) {
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
-      {({ open }) => (
-        <>
-          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-            <div className="relative flex items-center justify-between h-16">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
-              </div>
-              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex-shrink-0 flex items-center">
+    <>
+    <Popover className="relative bg-white">
+      
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+          <div className="flex justify-start lg:w-0 lg:flex-1">
+            <a href="#">
+              <span className="sr-only">Schülergenossen Selm</span>
+              <img
+                className="h-11 w-auto sm:h-20"
+                src="logo.png"
+                alt="Schülergenossen Logo"
+              />
+            </a>
+          </div>
+          <div className="-my-2 -mr-2 md:hidden">
+            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+              <span className="sr-only">Open menu</span>
+              <IconMenu className="h-6 w-6" aria-hidden="true" />
+            </Popover.Button>
+          </div>
+          <Popover.Group as="nav" className="hidden space-x-10 md:flex">
+            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+              Start
+            </a>
+            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+              Shop
+            </a>
+            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+              Potato Company
+            </a>
+            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+              Team
+            </a>
+          </Popover.Group>
+          <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+            <a
+              href="cart"
+              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+            >
+              Warenkorb
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <Transition
+        as={Fragment}
+        enter="duration-200 ease-out"
+        enterFrom="opacity-0 scale-95"
+        enterTo="opacity-100 scale-100"
+        leave="duration-100 ease-in"
+        leaveFrom="opacity-100 scale-100"
+        leaveTo="opacity-0 scale-95"
+      >
+        <Popover.Panel focus className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden z-10">
+          <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+            <div className="px-5 pt-5 pb-6">
+              <div className="flex items-center justify-between">
+                <div>
                   <img
-                    className="block lg:hidden h-10 w-auto"
+                    className="h-20 w-auto"
                     src="logo.png"
-                    alt="Workflow"
-                  />
-                  <img
-                    className="hidden lg:block h-10 w-auto"
-                    src="logo.png"
-                    alt="Workflow"
+                    alt="Schülergenossen Selm"
                   />
                 </div>
-                <div className="hidden sm:block sm:ml-6">
-                  <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'px-3 py-2 rounded-md text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
-                  </div>
+                <div className="-mr-2">
+                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <span className="sr-only">Close menu</span>
+                    <IconX className="h-6 w-6" aria-hidden="true" />
+                  </Popover.Button>
                 </div>
               </div>
-              <a href='cart' className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
-                  type="button"
-                  className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white"
+              <div className="mt-6">
+                <nav className="grid gap-y-8">
+                  {solutions.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                    >
+                      <span className="ml-3 text-base font-medium text-gray-900">{item.name}</span>
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </div>
+            <div className="space-y-6 py-6 px-5">
+              <div>
+                <a
+                  href="cart"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                 >
-                  <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
-              </a>
+                  Warenkorb
+                </a>
+              </div>
             </div>
           </div>
-
-          <Disclosure.Panel className="sm:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block px-3 py-2 rounded-md text-base font-medium'
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
-            </div>
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+        </Popover.Panel>
+      </Transition>
+    </Popover>
+    </>
   )
 }
+
