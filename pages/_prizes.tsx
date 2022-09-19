@@ -3,28 +3,23 @@
 const features = [
   {
     name: '1. Platz "Gründung an Schulen" (WFG Gründerpreis)',
-    img: "prize1.jpeg",
-    size: "11"
+    img: "prize1.jpeg"
   },
   {
     name: 'Schüler Business Award (Beste Schülerfirma Deutschlands)',
-    img: "prize2.png",
-    size: "11"
+    img: "prize2.png"
   },
   {
     name: 'EasyCredit Preis 2018',
-    img: "prize3.png",
-    size: "10"
+    img: "prize3.png"
   },
   {
     name: "Schülergenossenschaftspreis 2016",
-    img: "prize4.png",
-    size: "10"
+    img: "prize4.png"
   },
   {
     name: "IHK Schulpreis",
-    img: "prize5.png",
-    size: "12"
+    img: "prize5.png"
   }
 ]
 
@@ -33,7 +28,6 @@ export default function Example() {
     <div className="bg-white py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
-          <h2 className="text-lg font-semibold text-indigo-600">Schülergenossen Selm</h2>
           <p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
             Unsere Auszeichnungen
           </p>
@@ -45,7 +39,7 @@ export default function Example() {
               <div key={feature.name} className="relative">
                 <dt>
                   <div className="absolute flex h-12 w-15 items-center justify-center rounded-md text-white">
-                    <img src={feature.img} className={"h-"+feature.size} />
+                    <img src={feature.img} className={"h-10"} />
                   </div>
                   <p className="text-lg font-medium leading-6 text-gray-900" style={{marginLeft: "110px"}}>{feature.name}</p>
                 </dt>

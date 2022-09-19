@@ -2,20 +2,21 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { IconMenu,IconMessage,IconShoppingCart,IconX } from '@tabler/icons'
+import Link from 'next/link'
 
 const solutions = [
   {
     name: 'Start',
-    href: '#',
+    href: "/",
   },
   {
     name: 'Shop',
-    href: 'shop',
+    href: "shop",
   },
-  { name: 'Potato Company', href: 'potato' },
+  { name: 'Potato Company', href: "potato" },
   {
     name: 'Team',
-    href: 'team',
+    href: "team",
   },
 ]
 
@@ -31,7 +32,7 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
+            <a href="">
               <span className="sr-only">Schülergenossen Selm</span>
               <img
                 className="h-11 w-auto sm:h-20"
@@ -47,16 +48,16 @@ export default function Navbar() {
             </Popover.Button>
           </div>
           <Popover.Group as="nav" className="hidden space-x-10 md:flex">
-            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+            <a href="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
               Start
             </a>
-            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+            <a href="shop" className="text-base font-medium text-gray-500 hover:text-gray-900">
               Shop
             </a>
-            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+            <a href="potato" className="text-base font-medium text-gray-500 hover:text-gray-900">
               Potato Company
             </a>
-            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+            <a href="team" className="text-base font-medium text-gray-500 hover:text-gray-900">
               Team
             </a>
           </Popover.Group>

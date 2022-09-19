@@ -1,0 +1,97 @@
+[
+    {
+        "id": 1,
+        "name": "Insektenhotels",
+        "description": " in den Farben gelb, grün und blau erhältlich. Sauber entgratete und splitterfreie Bambusrohre und Asthölzer. Knoten im Bambus wurden mit einem Bohrer entfernt. Die Bambusrohre und die Asthölzer sind unbehandelt. Wir haben umweltschonenden und frostsicheren Fliesenkleber und Lacke verwendet. Die Nisthilfen wurden nach Vorlage des NABUs hergestellt",
+        "images": ["product1.png"],
+        "price": 20.0,
+        "priceStr": "20 €",
+        "variants": ["blue", "green", "yellow"],
+        "available": true,
+        "shipping": "1-3 Tage",
+        "discount": false,
+        "href": "/product/1"
+    },
+    {
+        "id": 2,
+        "name": "Mehrwegbecher Selmer Skyline",
+        "description": "In sieben verschiedenen Farben erhältlich. Nachwachsenden Rohstoffen produziert und daher frei von jeglichen Schadstoffen. Selbstverständlich sind unsere Becher bei Kontakt mit Lebensmittel absolut unbedenklich. Spülmaschinen geeignet: Mindestens 250 Zyklen (TÜV Rheinland). Im Gegensatz zu herkömmlichen Kunststoffbechern – keine Belastung für die Umwelt. Die Produktion der Rohstoffe und des Bechers finden in Deutschland statt – kurze Wege",
+        "images": ["product2.png"],
+        "price": 6.0,
+        "priceStr": "6 €",
+        "variants": [],
+        "available": true,
+        "shipping": "1-3 Tage",
+        "discount": {
+            "price": 5.0,
+            "priceStr": "5 €"
+        },
+        "href": "/product/2"
+    },
+    {
+        "id": 3,
+        "name": "Baumwolltaschen",
+        "description": "In Zusammenarbeit mit www.buchstabenorte.de entwickeltes Motiv auf hochwertigen Fair-Trade-Baumwolltaschen",
+        "images": ["shopProduct4.jpeg"],
+        "price": 4.90,
+        "priceStr": "4,90 €",
+        "variants": ["black", "blue", "red", "green"],
+        "available": true,
+        "shipping": "3-7 Tage",
+        "discount": false,
+        "href": "/product/3"
+    },
+    {
+        "id": 4,
+        "name": "Poster Buchstabenorte Selm",
+        "description": "In Zusammenarbeit mit www.buchstabenorte.de entwickeltes Motiv auf hochwertigen Postern im Siebdruck-Verfahren",
+        "images": ["shopProduct4.png"],
+        "price": 12.90,
+        "priceStr": "12,90 €",
+        "variants": ["DIN A1", "DIN A2", "DIN A3", "DIN A4"],
+        "available": true,
+        "shipping": "8-14 Tage",
+        "discount": false,
+        "href": "/product/4"
+    },
+    {
+        "id": 5,
+        "name": "Baumwolltaschen mit Selmer Skyline",
+        "description": "Bunte Stofftaschen, bedruckt mit der Selmer Skyline. Die Skyline zeigt je zwei Gebäude aus den drei Selmer Ortsteilen. Auch der Nachhaltigkeitsgedanke kommt bei diesen Taschen nicht zu kurz - schließlich kannst Du die Tasche deutlich häufiger nutzen als Plastiktüten.",
+        "images": ["product7.jpeg"],
+        "price": 4.90,
+        "priceStr": "4,90 €",
+        "variants": ["naturfarben", "gelb", "rot", "bordeaux", "lila", "blau", "grün", "orange"],
+        "available": true,
+        "shipping": "3-7 Tage",
+        "discount": false,
+        "href": "/product/5"
+    },
+    {
+        "id": 6,
+        "name": "Teelichthalter",
+        "description": "Der Teelichthalter besteht aus einem massiven Holzsockel, in den eine bedruckte Acrylglasscheibe mit Skyline-Aufdruck eingesetzt werden kann. Der Halter sollte nur unter ständiger Beobachtung betrieben werden",
+        "images": ["product6.jpeg"],
+        "price": 9.90,
+        "priceStr": "9,90 €",
+        "variants": [],
+        "available": true,
+        "shipping": "3-7 Tage",
+        "discount": false,
+        "href": "/product/6"
+    },
+    {
+        "id": 7,
+        "name": "Schlüsselanhänger",
+        "description": "Stylische Schlüsselanhänger in knalligen Farben. Demnächst wieder verfügbar!",
+        "images": ["product5.png"],
+        "price": 2.50,
+        "priceStr": "2,50 €",
+        "variants": ["grau", "orange", "rot", "grün", "blau", "hellblau", "lila"],
+        "available": true,
+        "shipping": "1-3 Tage",
+        "discount": false,
+        "href": "/product/7"
+    }
+    
+]
