@@ -1,7 +1,8 @@
 import { Center } from "@mantine/core"
 import Navbar from "./_Navbar"
 
-export default function Potato(){
+
+export default function Team() {
     return (
         <>
             <Navbar />

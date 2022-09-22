@@ -48,26 +48,25 @@ export default function Navbar() {
             </Popover.Button>
           </div>
           <Popover.Group as="nav" className="hidden space-x-10 md:flex">
-            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+            <Link href="/"><a className="text-base font-medium text-gray-500 hover:text-gray-900">
               Start
-            </a>
-            <a href="shop" className="text-base font-medium text-gray-500 hover:text-gray-900">
+            </a></Link>
+            <Link href="/shop"><a className="text-base font-medium text-gray-500 hover:text-gray-900">
               Shop
-            </a>
-            <a href="potato" className="text-base font-medium text-gray-500 hover:text-gray-900">
+            </a></Link>
+            <Link href="/potato"><a className="text-base font-medium text-gray-500 hover:text-gray-900">
               Potato Company
-            </a>
-            <a href="team" className="text-base font-medium text-gray-500 hover:text-gray-900">
+            </a></Link>
+            <Link href="/team"><a className="text-base font-medium text-gray-500 hover:text-gray-900">
               Team
-            </a>
+            </a></Link>
           </Popover.Group>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            <a
-              href="cart"
+            <Link href="/cart"><a
               className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
               Warenkorb
-            </a>
+            </a></Link>
           </div>
         </div>
       </div>

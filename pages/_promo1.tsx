@@ -1,3 +1,4 @@
+import Link from "../node_modules/next/link";
 
 export default function Promo1() {
     return (
@@ -80,12 +81,11 @@ export default function Promo1() {
                   </div>
                 </div>
   
-                <a
-                  href="shop"
+                <Link href="/shop"><a
                   className="inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-center font-medium text-white hover:bg-indigo-700"
                 >
                   Zum Shop
-                </a>
+                </a></Link>
               </div>
             </div>
           </div>

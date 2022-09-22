@@ -1,5 +1,7 @@
 const products = require("../../public/PRODUCTS.json")
   
+
+
   export default function Example() {
 
     return (
@@ -14,7 +16,7 @@ const products = require("../../public/PRODUCTS.json")
                   <img
                     src={product.images[0]}
                     alt="Product"
-                    className="w-full object-cover object-center lg:w-full"
+                    className="min-h-80 object-cover object-center lg:w-full"
                   />
                 </div>
                 <div className="mt-4 flex justify-between">
@@ -26,7 +28,7 @@ const products = require("../../public/PRODUCTS.json")
                       </a>
                     </h3>
                   </div>
-                  <p className="text-sm font-medium text-gray-900">{product.priceStr}</p>
+                  {product.discount !== false ? <p className="text-sm font-medium text-gray-500 line-through">{product.discount.priceStr}</p> : null}<p className="text-sm font-medium text-gray-900">{product.priceStr}</p>
                 </div>
               </div>
             ))}
