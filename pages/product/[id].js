@@ -5,7 +5,7 @@ import { RadioGroup } from '@headlessui/react'
 import { IconStar } from '@tabler/icons'
 import Navbar from "../_Navbar"
 import Link from 'next/link'
-const axios = require('axios').default;
+import { getCookie, setCookie } from 'cookies-next';
 
 
 
@@ -31,7 +31,6 @@ const colorData = {
 
 export default function Product() {
     const router = useRouter()
-    const reviews = { href: '#', average: 4, totalCount: 117 }
     const [selectedColor,setSelectedColor] = useState("blau");
     const [selectedSize,setSelectedSize] = useState("");
     const { id } = router.query
@@ -53,6 +52,17 @@ export default function Product() {
     }
     }
     console.log(product);
+    const ADD = (p) => {
+      addToCart({
+        id: p.id,
+        name: p.name,
+        priceStr: p.priceStr,
+        price: p.price,
+        variant: p.id === 6 ? "" : selectedSize === "" ? selectedColor : selectedSize,
+        amount: 1,
+        img: p.images[0],
+      });
+    }
 
 
     return (
@@ -207,7 +217,7 @@ export default function Product() {
   
                 <button
                   className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  onClick={() => addToCart(data[id-1])}
+                  onClick={() => ADD(data[id-1])}
                 >
                   Zum Warenkorb hinzufügen
                 </button>
@@ -253,12 +263,21 @@ export default function Product() {
 }
 
 async function addToCart(product) {
-  console.log("ADD TO CART")
-  axios({
-    method: 'post',
-    url: '/api/addtocart',
-    data: product
-  }).then(res => {
-    console.log(res)
+  let cart = getCookie("cart")
+
+  if(cart === undefined || cart === null) {
+    setCookie("cart", [product]);
+    return;
+  }
+
+  const tempArray = JSON.parse(cart);
+
+  tempArray.map(e => {
+    if(e.id === product.id && e.variant === product.variant) {
+      e.amount++;
+      setCookie("cart", tempArray);
+      return;
+    }
   })
+  setCookie("cart", tempArray);
 }

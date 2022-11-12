@@ -1,10 +1,12 @@
 import Navbar from "./_Navbar";
-import getSession from "next-session";
+import { getCookie } from 'cookies-next';
+import { useState } from "react";
 
-
-export default function Cart({ cart }) {
-
-    console.log(cart === null || cart === undefined ? "Cart is empty" : cart);
+export default function Cart() {
+    
+    const [giftCodes, setGiftCodes] = useState([]);
+    const [giftCode, setGiftCode] = useState("");
+    const [giftCodeError, setGiftCodeError] = useState(false);
 
     return (
         <>
@@ -26,30 +28,7 @@ export default function Cart({ cart }) {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td className="hidden pb-4 md:table-cell">
-                            <a href="#">
-                                <img src="product1.png" className="w-20 rounded" alt="Thumbnail" />
-                            </a>
-                            </td>
-                            <td className="justify-center md:justify-end md:flex mt-6">
-                            <div className="w-20 h-10">
-                                <div className="relative flex flex-row w-full h-8">
-                                  ???
-                                </div>
-                            </div>
-                            </td>
-                            <td className="hidden text-right md:table-cell">
-                            <span className="text-sm lg:text-base font-medium">
-                                ???
-                            </span>
-                            </td>
-                            <td className="text-right">
-                            <span className="text-sm lg:text-base font-medium">
-                                ??? €
-                            </span>
-                            </td>
-                        </tr> 
+                            {cartItem()}
                         </tbody>
                     </table>
                     <hr className="pb-1 mt-6" />
@@ -62,9 +41,9 @@ export default function Cart({ cart }) {
                 <p className="mb-4 italic">Wenn du einen Gutscheincode hast kannst du diesen hier eintragen</p>
                 <div className="justify-center md:flex">
                     <div className="flex items-center w-full h-13 pl-3 bg-white bg-gray-100 border rounded-full">
-                        <input type="coupon" name="code" id="coupon" placeholder="Code eingeben"
+                        <input type="coupon" name="code" id="coupon" placeholder="Code eingeben" onChange={e => setGiftCode(e.target.value)} 
                                 className="w-full bg-gray-100 outline-none appearance-none focus:outline-none active:outline-none"/>
-                        <button className="text-sm flex items-center px-3 py-1 text-white bg-gray-800 rounded-full outline-none md:px-4 hover:bg-gray-700 focus:outline-none active:outline-none">
+                        <button className="text-sm flex items-center px-3 py-1 text-white bg-gray-800 rounded-full outline-none md:px-4 hover:bg-gray-700 focus:outline-none active:outline-none" onClick={() => addGiftCode(giftCode,giftCodes,setGiftCodes,setGiftCode)}>
                             <svg aria-hidden="true" data-prefix="fas" data-icon="gift" className="w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 448c0 17.7 14.3 32 32 32h160V320H32v128zm256 32h160c17.7 0 32-14.3 32-32V320H288v160zm192-320h-42.1c6.2-12.1 10.1-25.5 10.1-40 0-48.5-39.5-88-88-88-41.6 0-68.5 21.3-103 68.3-34.5-47-61.4-68.3-103-68.3-48.5 0-88 39.5-88 88 0 14.5 3.8 27.9 10.1 40H32c-17.7 0-32 14.3-32 32v80c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16v-80c0-17.7-14.3-32-32-32zm-326.1 0c-22.1 0-40-17.9-40-40s17.9-40 40-40c19.9 0 34.6 3.3 86.1 80h-86.1zm206.1 0h-86.1c51.4-76.5 65.7-80 86.1-80 22.1 0 40 17.9 40 40s-17.9 40-40 40z"/></svg>
                             <span className="font-medium">Code einlösen</span>
                         </button>
@@ -117,7 +96,7 @@ export default function Cart({ cart }) {
                         Gesamtpreis
                     </div>
                     <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                        ??? €
+                        {getPrice()} €
                     </div>
                     </div>
                 <a href="#">
@@ -136,16 +115,102 @@ export default function Cart({ cart }) {
     )
 }
 
-export async function getServerSideProps({ req, res }) {
-    const session = await getSession(req, res);
-    
-    if (session.cart === null || session.cart === undefined) {
-        session.cart = [];
+const cartItem = () => {
+
+    let c = getCookie("cart")
+    console.log(c)
+    if (c === undefined || c === null) {
+        c =  []
+    } else {
+        c = JSON.parse(c)
     }
 
-    return {
-      props: {
-        cart: session.cart
-      },
-    };
-  }
+    let array = []
+
+     c.map(p => {
+        array.push(<tr key={p.id.toString()+p.variant.toString()}>
+        <td className="hidden pb-4 md:table-cell">
+            <a href="#">
+                <img src={p.img} className="w-20 rounded" alt="Thumbnail" />
+            </a>
+        </td>
+        <td className="justify-center md:justify-end md:flex mt-6">
+            <div className="w-20 h-10">
+                <div className="relative flex flex-row w-full h-8">
+                    {p.name}
+                </div>
+            </div>
+        </td>
+        <td className="hidden text-right md:table-cell">
+            <span className="text-sm lg:text-base font-medium">
+                {p.amount}
+            </span>
+        </td>
+        <td className="text-right">
+            <span className="text-sm lg:text-base font-medium">
+                {p.priceStr}
+            </span>
+        </td>
+        <td className="text-right">
+            <span className="text-sm lg:text-base font-medium">
+                {(p.amount * p.price).toString().replace(".", ",")+" €"}
+            </span>
+        </td>
+    </tr> )
+     })
+
+     return array;
+}
+
+function getPrice() {
+    let c = getCookie("cart")
+    if (c === undefined || c === null) {
+        c =  []
+    } else {
+        c = JSON.parse(c)
+    }
+
+    let price = 0
+
+    c.map(p => {
+        price += p.amount * p.price
+    })
+    price += 4.95;
+
+    return price
+}
+
+function getGiftCodes(codes) {
+    let array = []
+
+    codes.map(c => {
+        array.push(<div className="flex justify-between pt-4 border-t">
+        <div className="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+            <div className="flex">
+                <button className="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none">
+                    <svg aria-hidden="true" data-prefix="far" data-icon="trash-alt" className="w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H32A32 32 0 0 0 0 64v48a32 32 0 0 0 32 32h384a32 32 0 0 0 32-32V64a32 32 0 0 0-32-32zm-32 320H64a32 32 0 0 0-32 32v32a32 32 0 0 0 32 32h320a32 32 0 0 0 32-32v-32a32 32 0 0 0-32-32zm-96-96a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32h128a32 32 0 0 1 32 32z"/></svg>
+                </button>
+                {c}
+            </div>
+        </div>
+        <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-green-700">
+            -0€
+        </div>
+        </div>)
+    })
+
+    return array
+}
+function addGiftCode(code,codes,setCodes,setCode) {
+
+    if(code === "Test") { //TODO: Check if code is valid
+
+        console.log("Code is valid")
+        let c = getCookie("giftCodes")
+        setCodes([...codes,{code:code, value:10}])
+        setCode("")
+
+    }
+    console.log(code)
+    
+}
